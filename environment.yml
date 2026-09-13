@@ -1,0 +1,17 @@
+name: gamma-camera-monte-carlo
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - pyyaml
+  - pip
+  - pip:
+      - pytest
+      - ruff
+# Geant4 and GAMOS are NOT installed by this environment; the Python analysis
+# layer runs without them. See docs/install.md for the simulation stack.

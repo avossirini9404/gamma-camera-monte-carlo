@@ -1,0 +1,23 @@
+# Generic low-energy high-resolution parallel-hole gamma camera.
+#
+# ILLUSTRATIVE, GENERIC VALUES. These are not the specifications of any
+# commercial system and are not taken from manufacturer documentation. They are
+# in the range typical of published LEHR designs so that the model is physically
+# sensible, and they are the values every result in this repository refers to.
+collimator:
+  type: parallel_hole
+  hole_shape: hexagonal
+  hole_diameter_mm: 1.5
+  septal_thickness_mm: 0.2
+  hole_length_mm: 25.0
+  collimator_material: lead
+crystal:
+  crystal_material: NaI(Tl)
+  crystal_thickness_mm: 9.5
+  intrinsic_energy_resolution_pct: 9.5
+  energy_resolution_reference_keV: 140.5
+detector:
+  intrinsic_spatial_resolution_mm: 3.8
+  pixel_size_mm: 4.0
+  matrix: [64, 64]
+  backscatter_compartment_mm: 50.0

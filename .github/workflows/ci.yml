@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+          pip install -e .
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        run: pytest -q
+  cpp-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install static analysis tools
+        run: sudo apt-get update && sudo apt-get install -y cppcheck clang-format
+      - name: Format check
+        # Style is pinned by .clang-format in the repository, so this check
+        # does not depend on the runner's default clang-format style.
+        run: clang-format --dry-run --Werror gamos/plugins/src/*.cc gamos/plugins/include/*.hh
+      # Advisory, not blocking: without the Geant4 headers cppcheck cannot
+      # resolve most types here, so its view of this code is partial and a
+      # failure would not reliably mean a defect.
+      - name: Static analysis (advisory)
+        continue-on-error: true
+        run: |
+          cppcheck --enable=warning,style \
+                   --suppress=missingInclude --suppress=missingIncludeSystem \
+                   --inline-suppr gamos/plugins/src
+# The C++ layer is checked statically only. Compiling it needs Geant4, whose
+# CI build takes hours, so a green badge here means the sources are clean and
+# the analysis chain is sound — not that the simulation was built or run.

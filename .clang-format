@@ -1,0 +1,7 @@
+# Google style with a 90-column limit, so the CI format check is reproducible
+# on any machine: clang-format's defaults change between versions, an explicit
+# file does not.
+BasedOnStyle: Google
+ColumnLimit: 90
+DerivePointerAlignment: false
+PointerAlignment: Left

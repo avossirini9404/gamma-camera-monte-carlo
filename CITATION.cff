@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "gamma-camera-monte-carlo: a generic Monte Carlo model of a gamma camera"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "Ruiz Vossirini"
+    given-names: "Arianna"
+version: 0.1.0
+date-released: "2026-01-01"
+license: MIT
+repository-code: "https://github.com/avossirini9404/gamma-camera-monte-carlo"
+keywords:
+  - Monte Carlo
+  - Geant4
+  - GAMOS
+  - gamma camera
+  - SPECT
+  - quantitative imaging
+  - NEMA image quality

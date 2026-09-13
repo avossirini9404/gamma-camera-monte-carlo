@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# Generated simulation inputs and outputs
+gamos/generated/
+gamos/plugins/build/
+results/**
+!results/.gitkeep
+*.root
+*.parquet
+*.csv
+!tests/**/*.csv
+*.npz
+*.log
+
+.DS_Store
+.vscode/
+.idea/

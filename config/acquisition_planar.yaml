@@ -1,0 +1,7 @@
+acquisition:
+  mode: planar
+  angles_deg: [0.0]
+  distance_to_collimator_mm: 100.0
+  total_counts: 5.0e6
+  live_time_s: 300
+  replicas: 5                          # independent seeds, for run-to-run CIs

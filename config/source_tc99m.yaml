@@ -1,0 +1,7 @@
+source:
+  radionuclide: Tc-99m
+  photopeaks_keV: [140.5]
+  yields: [0.885]                     # photons per decay, public decay data
+  acquisition_windows:
+    - {name: photopeak, centre_keV: 140.5, width_pct: 20}
+    - {name: lower_scatter, centre_keV: 120.0, width_pct: 10}

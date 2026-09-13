@@ -1,0 +1,15 @@
+# NEMA-IEC-inspired digital phantom, six spherical inserts.
+#
+# Sphere diameters follow the NEMA NU 2 image-quality set. The background
+# compartment is a generic elliptical cylinder: this phantom is *inspired by*
+# the NEMA/IEC design and is not a certified reproduction of it.
+phantom:
+  sphere_diameters_mm: [10.0, 13.0, 17.0, 22.0, 28.0, 37.0]
+  sphere_centre_circle_diameter_mm: 114.4
+  background_semiaxis_x_mm: 115.0
+  background_semiaxis_y_mm: 90.0
+  background_height_mm: 180.0
+  lung_insert_diameter_mm: 50.0
+  sphere_to_background_ratio: 8.0     # 4.0 is the second condition studied
+  voxel_size_mm: 4.0
+  grid_shape: [64, 64, 48]

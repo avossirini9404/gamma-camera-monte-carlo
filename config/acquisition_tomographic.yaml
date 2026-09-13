@@ -1,0 +1,14 @@
+# Tomographic acquisition. Required for NEMA NU 2 image-quality figures, which
+# are defined on reconstructed images.
+acquisition:
+  mode: tomographic
+  n_angles: 60
+  angular_range_deg: 360
+  distance_to_collimator_mm: 100.0
+  total_counts: 3.0e7
+  live_time_s: 1800
+  replicas: 5
+reconstruction:
+  algorithm: mlem
+  iterations: 30
+  post_filter_fwhm_mm: 0.0

@@ -1,0 +1,37 @@
+# GAMOS macro — projection of the six-sphere phantom.
+#
+# No physical parameter appears in this file. Geometry, activity map and
+# radionuclide emission are generated from config/ by scripts/build_geometry.py,
+# so the simulated camera is the camera the analysis assumes.
+
+/gamos/setParam GmGeometryFromText:FileName gamos/generated/collimator_geometry.txt
+/gamos/setParam GmGeometryFromText:FileName2 gamos/generated/detector_geometry.txt
+/gamos/geometry GmGeometryFromText
+
+# Electromagnetic physics with low-energy models: photoelectric absorption,
+# Rayleigh and Compton scattering all matter in the 100-250 keV range, and lead
+# K X-ray fluorescence in the septa is part of what reaches the crystal.
+/gamos/physicsList GmEMPhysics
+/gamos/physics/addPhysics LowEnergyEM
+
+# Production cuts: tight where energy deposition and septal penetration are
+# scored, looser in the phantom, where only transport matters.
+/gamos/physics/cutsInRegion crystal 0.1 mm
+/gamos/physics/cutsInRegion collimator 0.1 mm
+/gamos/physics/cutsInRegion phantom 1.0 mm
+
+# Source: emission spectrum and activity map both read from generated files,
+# so switching radionuclide is a configuration change, not a macro edit.
+/gamos/generator GmGenerator
+/gamos/generator/addSourceEnergyFromFile source gamma \
+    gamos/generated/source_emission.txt
+/gamos/generator/positionDistType GmGenerDistPositionFromFile \
+    gamos/generated/source_activity.txt
+/gamos/generator/directionDistType GmGenerDistDirectionIsotropic
+
+# Scoring: one row per detected event, with the photon lineage carried through
+# secondaries. See gamos/plugins/.
+/gamos/userAction PhotonHistoryUA {OUTPUT}
+
+/gamos/random/setSeeds {SEED} {SEED}
+/run/beamOn {HISTORIES}

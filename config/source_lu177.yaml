@@ -1,0 +1,13 @@
+# Second radionuclide, included because the questions that make this model
+# useful (scatter fraction in the window, partial-volume recovery, quantitative
+# calibration) are the ones that matter for 177Lu dosimetry, where the
+# quantification error propagates directly into absorbed dose.
+source:
+  radionuclide: Lu-177
+  photopeaks_keV: [113.0, 208.4]
+  yields: [0.0620, 0.1040]
+  acquisition_windows:
+    - {name: photopeak_113, centre_keV: 113.0, width_pct: 20}
+    - {name: photopeak_208, centre_keV: 208.4, width_pct: 20}
+    - {name: lower_scatter_208, centre_keV: 178.0, width_pct: 10}
+    - {name: upper_scatter_208, centre_keV: 240.0, width_pct: 10}
